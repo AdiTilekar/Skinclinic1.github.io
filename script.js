@@ -35,6 +35,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =============================================
+    // Home Programs Mobile Auto-Slider
+    // =============================================
+    const homeProgramsGrid = document.querySelector('#programs .programs-grid');
+    if (homeProgramsGrid) {
+        let autoSlideTimer = null;
+
+        const isMobileViewport = () => window.matchMedia('(max-width: 768px)').matches;
+
+        const startProgramsAutoSlide = () => {
+            if (!isMobileViewport() || autoSlideTimer) return;
+
+            autoSlideTimer = setInterval(() => {
+                const firstCard = homeProgramsGrid.querySelector('.program-card');
+                if (!firstCard) return;
+
+                const gap = 16;
+                const step = firstCard.getBoundingClientRect().width + gap;
+                const maxScrollLeft = homeProgramsGrid.scrollWidth - homeProgramsGrid.clientWidth;
+
+                if (homeProgramsGrid.scrollLeft + step >= maxScrollLeft - 4) {
+                    homeProgramsGrid.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    homeProgramsGrid.scrollBy({ left: step, behavior: 'smooth' });
+                }
+            }, 2800);
+        };
+
+        const stopProgramsAutoSlide = () => {
+            if (!autoSlideTimer) return;
+            clearInterval(autoSlideTimer);
+            autoSlideTimer = null;
+        };
+
+        homeProgramsGrid.addEventListener('touchstart', stopProgramsAutoSlide, { passive: true });
+        homeProgramsGrid.addEventListener('mouseenter', stopProgramsAutoSlide);
+        homeProgramsGrid.addEventListener('mouseleave', startProgramsAutoSlide);
+
+        window.addEventListener('resize', () => {
+            stopProgramsAutoSlide();
+            startProgramsAutoSlide();
+        });
+
+        startProgramsAutoSlide();
+    }
+
+
+    // =============================================
     // Floating Contact Buttons
     // =============================================
     const floatingButtons = document.getElementById('floating-contact-buttons');

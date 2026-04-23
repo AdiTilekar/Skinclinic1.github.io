@@ -1742,16 +1742,40 @@ img { display: block; max-width: 100%; height: auto; }
     #programs .programs-grid {
         display: grid;
         grid-auto-flow: column;
-        grid-auto-columns: 82%;
+        grid-auto-columns: minmax(250px, 82vw);
         gap: 16px;
         overflow-x: auto;
         overscroll-behavior-x: contain;
         scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
-        padding: 4px 2px 8px;
+        padding: 4px 2px 12px;
+    }
+    #programs .programs-grid::-webkit-scrollbar {
+        display: none;
     }
     #programs .program-card {
         scroll-snap-align: start;
+        border-radius: 18px;
+    }
+    #programs .card-image {
+        height: 180px;
+    }
+    #programs .card-body {
+        padding: 18px;
+    }
+    #programs .card-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    #programs .card-desc {
+        font-size: 14px;
+        line-height: 1.65;
+        min-height: 0;
+        margin-bottom: 14px;
+    }
+    #programs .card-cta {
+        font-size: 15px;
     }
     #programs .programs-grid .program-card:last-child {
         max-width: none;
