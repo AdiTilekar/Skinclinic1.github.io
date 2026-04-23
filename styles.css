@@ -1671,7 +1671,7 @@ img { display: block; max-width: 100%; height: auto; }
     }
 
     .card-center {
-        width: 182px; height: 248px;
+        width: 191px; height: 260px;
         left: 50%; top: 50%;
         transform: translate(-50%, -50%);
         border-radius: 16px; z-index: 3;
@@ -1967,7 +1967,7 @@ img { display: block; max-width: 100%; height: auto; }
     .hero-social-btn svg { width: 16px; height: 16px; }
 
     .hero-collage { height: 260px; }
-    .card-center { width: 146px; height: 202px; }
+    .card-center { width: 153px; height: 212px; }
     .card-left-top { width: 80px; height: 80px; }
     .card-left-center { width: 75px; height: 70px; }
     .card-left-bottom { width: 75px; height: 70px; }
