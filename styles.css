@@ -1739,8 +1739,24 @@ img { display: block; max-width: 100%; height: auto; }
 
     /* Programs */
     .programs-section { padding: 50px 0 60px; }
-    .programs-grid { grid-template-columns: 1fr; gap: 24px; }
-    .programs-grid .program-card:last-child { max-width: 100%; }
+    #programs .programs-grid {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 82%;
+        gap: 16px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 4px 2px 8px;
+    }
+    #programs .program-card {
+        scroll-snap-align: start;
+    }
+    #programs .programs-grid .program-card:last-child {
+        max-width: none;
+        margin: 0;
+    }
 
     /* Diet Programs Grid */
     .home-diet-programs { padding: 50px 0 60px; }
