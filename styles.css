@@ -1958,6 +1958,436 @@ img { display: block; max-width: 100%; height: auto; }
 
 
 /* =============================================
+   REDESIGN OVERRIDES — WOMEN'S WELLNESS THEME
+   ============================================= */
+:root {
+    --dusty-rose: #b66b7b;
+    --dusty-rose-strong: #9f5365;
+    --dusty-rose-soft: #f2dde3;
+    --cream-base: #f7f0eb;
+    --blush-surface: #f9e8ed;
+    --sage-soft: #a8b89a;
+    --olive-accent: #7a8f72;
+    --taupe-line: #d9c8b4;
+    --heading-warm: #3e2d2d;
+    --body-warm: #6b5a52;
+    --soft-border: #e7d4cd;
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', 'Segoe UI', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', 'Segoe UI', sans-serif;
+    background: var(--cream-base);
+    color: var(--body-warm);
+    line-height: 1.75;
+}
+
+h1, h2, h3, h4, h5, h6,
+.hero-heading,
+.section-heading,
+.section-heading-lg,
+.section-heading-xl,
+.page-hero-heading,
+.card-title,
+.service-detail-title,
+.clinic-name,
+.form-title,
+.footer-brand-name {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--heading-warm);
+}
+
+p, li, .card-desc, .founder-para, .service-intro, .service-detail-body p, .page-hero-desc {
+    color: var(--body-warm);
+}
+
+.green {
+    color: var(--olive-accent);
+}
+
+.announcement-bar {
+    background: var(--dusty-rose);
+}
+
+.announcement-bar p,
+.announcement-bar a {
+    color: #fff7f1;
+}
+
+.main-navbar {
+    background: #f8f1ec;
+    border-bottom: 1px solid var(--taupe-line);
+}
+
+.main-navbar.scrolled {
+    box-shadow: 0 10px 30px rgba(119, 89, 82, 0.1);
+}
+
+.nav-link {
+    color: var(--heading-warm);
+}
+
+.nav-link:hover {
+    color: var(--dusty-rose-strong);
+}
+
+.nav-link.active::after {
+    background: var(--dusty-rose-strong);
+}
+
+.nav-dropdown:focus-within .dropdown-menu,
+.nav-dropdown.open .dropdown-menu,
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu {
+    background: #fff7f2;
+    border: 1px solid var(--soft-border);
+    box-shadow: 0 14px 32px rgba(122, 94, 88, 0.16);
+}
+
+.dropdown-menu a:hover {
+    background: var(--blush-surface);
+    color: var(--dusty-rose-strong);
+}
+
+.nav-cta,
+.hero-cta-btn,
+.btn-sage,
+.cta-btn,
+.form-submit {
+    background: var(--dusty-rose);
+    color: #fff7f1 !important;
+    border: 1px solid rgba(255, 247, 241, 0.2);
+    box-shadow: 0 8px 20px rgba(182, 107, 123, 0.2);
+}
+
+.nav-cta:hover,
+.hero-cta-btn:hover,
+.btn-sage:hover,
+.cta-btn:hover,
+.form-submit:hover {
+    background: var(--dusty-rose-strong);
+    box-shadow: 0 10px 26px rgba(182, 107, 123, 0.3);
+}
+
+.hero-section,
+.page-hero,
+.programs-section,
+.about-offers,
+.gallery-section,
+.contact-section,
+.services-page {
+    background: var(--cream-base);
+}
+
+.social-proof-section,
+.how-it-works-section,
+.faq-section,
+.home-diet-programs {
+    background: linear-gradient(180deg, #f7f0eb 0%, #f3e8e0 100%);
+}
+
+.what-you-get-section,
+.founder-section,
+.about-story {
+    background: linear-gradient(180deg, #f8efe8 0%, #f7f0eb 100%);
+}
+
+.hero-section,
+.page-hero,
+.contact-section,
+.about-story,
+.founder-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before,
+.page-hero::before,
+.contact-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle at 12% 18%, rgba(168, 184, 154, 0.16) 0, rgba(168, 184, 154, 0) 26%),
+                      radial-gradient(circle at 88% 18%, rgba(201, 122, 138, 0.15) 0, rgba(201, 122, 138, 0) 30%);
+}
+
+.hero-section::after,
+.page-hero::after,
+.about-story::after {
+    content: '';
+    position: absolute;
+    right: -100px;
+    bottom: -130px;
+    width: 340px;
+    height: 340px;
+    border-radius: 50% 40% 60% 45%;
+    background: rgba(168, 184, 154, 0.14);
+    pointer-events: none;
+}
+
+.program-card,
+.diet-program-card,
+.review-card,
+.video-card,
+.qual-card,
+.offer-card,
+.service-detail,
+.map-card,
+.contact-card,
+.contact-form-card,
+.clinic-header-card,
+.contact-info-strip,
+.faq-item,
+.logo-card,
+.sidebar-link,
+.gallery-item {
+    border-radius: 16px;
+    border: 1px solid var(--soft-border);
+    box-shadow: none;
+}
+
+.review-card,
+.contact-form-card,
+.offer-card,
+.qual-card,
+.faq-item,
+.service-feature,
+.clinic-action-btn,
+.contact-pill-btn,
+.logo-card {
+    background: var(--blush-surface);
+}
+
+.program-card,
+.diet-program-card,
+.service-detail,
+.map-card,
+.contact-card,
+.clinic-header-card,
+.contact-info-strip,
+.gallery-item,
+.sidebar-link {
+    background: #fff6f1;
+}
+
+.program-card:hover,
+.diet-program-card:hover,
+.offer-card:hover,
+.qual-card:hover,
+.gallery-item:hover,
+.service-detail:hover,
+.contact-card:hover,
+.faq-item:hover {
+    border-color: #d8a8b3;
+    box-shadow: 0 8px 20px rgba(179, 122, 136, 0.13);
+}
+
+.hero-social-btn,
+.fab-btn,
+.social-circle {
+    box-shadow: 0 10px 24px rgba(129, 94, 94, 0.2);
+}
+
+.fab-call,
+.contact-pill-call,
+.clinic-call-btn {
+    background: var(--olive-accent);
+    color: #fff7f1;
+}
+
+.fab-whatsapp,
+.contact-pill-wa,
+.clinic-wa-btn {
+    background: #6e8f67;
+    color: #fff7f1;
+}
+
+.fab-instagram,
+.clinic-ig-btn {
+    background: var(--dusty-rose);
+    color: #fff7f1;
+}
+
+.fab-youtube {
+    background: #b67886;
+}
+
+.service-badge,
+.filter-btn.active,
+.sidebar-link.active {
+    background: var(--dusty-rose);
+    color: #fff7f1;
+}
+
+.filter-btn {
+    border: 1px solid var(--taupe-line);
+    background: #fff7f2;
+    color: var(--body-warm);
+}
+
+.filter-btn:hover {
+    border-color: var(--dusty-rose);
+    color: var(--dusty-rose-strong);
+}
+
+.stat-number,
+.stat-suffix,
+.card-cta,
+.map-directions-btn,
+.review-read-more,
+.footer-contact a,
+.footer-links a:hover,
+.footer-bottom-inner a:hover {
+    color: var(--dusty-rose-strong);
+}
+
+.step-circle {
+    border-color: rgba(182, 107, 123, 0.45);
+    color: var(--dusty-rose-strong);
+}
+
+.timeline-line {
+    background: #dbc6b8;
+}
+
+.cta-section {
+    background: linear-gradient(130deg, #bf7585 0%, #a8b89a 100%);
+}
+
+.cta-sub {
+    color: #fff4ee;
+}
+
+.site-footer {
+    background: #463633;
+    color: rgba(255, 243, 236, 0.82);
+}
+
+.footer-col-title,
+.footer-bottom-inner {
+    color: rgba(255, 243, 236, 0.62);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background: #fff6f2;
+    border: 1px solid var(--taupe-line);
+    color: var(--heading-warm);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #bf7888;
+    box-shadow: 0 0 0 3px rgba(191, 120, 136, 0.22);
+}
+
+.lightbox {
+    background: rgba(247, 240, 235, 0.94);
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+    color: #fff6f0;
+    background: rgba(182, 107, 123, 0.92);
+}
+
+.lightbox-caption {
+    color: var(--heading-warm);
+}
+
+.gallery-item:focus-visible,
+.filter-btn:focus-visible,
+.nav-link:focus-visible,
+.nav-cta:focus-visible,
+.hero-cta-btn:focus-visible,
+.btn-sage:focus-visible,
+.cta-btn:focus-visible,
+.mobile-link:focus-visible,
+.sidebar-link:focus-visible,
+.form-submit:focus-visible,
+.faq-question:focus-visible,
+.contact-pill-btn:focus-visible,
+.clinic-action-btn:focus-visible {
+    outline: 2px solid var(--dusty-rose-strong);
+    outline-offset: 3px;
+}
+
+.mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 86px;
+    right: 0;
+    width: min(340px, 84vw);
+    height: calc(100vh - 86px);
+    background: #fbf2ed;
+    border-left: 1px solid var(--taupe-line);
+    box-shadow: -12px 0 26px rgba(95, 71, 68, 0.14);
+    transform: translateX(104%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+    z-index: 1200;
+}
+
+.mobile-menu.open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.mobile-link {
+    border-bottom: 1px solid #ecddd3;
+    color: var(--heading-warm);
+}
+
+@media (max-width: 768px) {
+    .mobile-menu {
+        top: 68px;
+        height: calc(100vh - 68px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .hero-social-btn,
+    .fab-btn,
+    .float-anim-1,
+    .float-anim-2,
+    .float-anim-3,
+    .fade-in-up,
+    .reveal,
+    .reveal-left {
+        animation: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
+
+
+/* =============================================
    RESPONSIVE — SMALL MOBILE (480px)
    ============================================= */
 @media (max-width: 480px) {

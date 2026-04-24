@@ -3,6 +3,7 @@
    ============================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // =============================================
     // Sticky Navbar with shadow
@@ -20,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // =============================================
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
+    const navDropdown = document.querySelector('.nav-dropdown');
+    const navDropdownTrigger = navDropdown ? navDropdown.querySelector('.nav-link') : null;
     if (hamburger && mobileMenu) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
@@ -30,6 +33,51 @@ document.addEventListener('DOMContentLoaded', () => {
                 hamburger.classList.remove('active');
                 mobileMenu.classList.remove('open');
             });
+        });
+    }
+
+    if (navDropdown && navDropdownTrigger) {
+        navDropdownTrigger.setAttribute('aria-haspopup', 'true');
+        navDropdownTrigger.setAttribute('aria-expanded', 'false');
+
+        const openDropdown = () => {
+            navDropdown.classList.add('open');
+            navDropdownTrigger.setAttribute('aria-expanded', 'true');
+        };
+
+        const closeDropdown = () => {
+            navDropdown.classList.remove('open');
+            navDropdownTrigger.setAttribute('aria-expanded', 'false');
+        };
+
+        navDropdownTrigger.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (navDropdown.classList.contains('open')) {
+                    closeDropdown();
+                } else {
+                    openDropdown();
+                }
+            }
+            if (e.key === 'Escape') {
+                closeDropdown();
+                navDropdownTrigger.focus();
+            }
+        });
+
+        navDropdown.addEventListener('focusin', openDropdown);
+        navDropdown.addEventListener('focusout', () => {
+            window.setTimeout(() => {
+                if (!navDropdown.contains(document.activeElement)) {
+                    closeDropdown();
+                }
+            }, 0);
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navDropdown.contains(e.target)) {
+                closeDropdown();
+            }
         });
     }
 
@@ -104,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const startProgramsAutoSlide = () => {
-            if (!isMobileViewport() || autoSlideTimer) return;
+            if (prefersReducedMotion || !isMobileViewport() || autoSlideTimer) return;
 
             autoSlideTimer = setInterval(() => {
                 const firstCard = homeProgramsGrid.querySelector('.program-card');
@@ -115,9 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const maxScrollLeft = homeProgramsGrid.scrollWidth - homeProgramsGrid.clientWidth;
 
                 if (homeProgramsGrid.scrollLeft + step >= maxScrollLeft - 4) {
-                    homeProgramsGrid.scrollTo({ left: 0, behavior: 'smooth' });
+                    homeProgramsGrid.scrollTo({ left: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
                 } else {
-                    homeProgramsGrid.scrollBy({ left: step, behavior: 'smooth' });
+                    homeProgramsGrid.scrollBy({ left: step, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
                 }
             }, 2800);
         };
@@ -203,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const startAutoSlide = () => {
-            if (!isMobileViewport() || autoSlideTimer) return;
+            if (prefersReducedMotion || !isMobileViewport() || autoSlideTimer) return;
 
             autoSlideTimer = setInterval(() => {
                 const firstCard = row.querySelector(config.cardSelector || '.review-card, .video-card');
@@ -213,9 +261,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const maxScrollLeft = row.scrollWidth - row.clientWidth;
 
                 if (row.scrollLeft + step >= maxScrollLeft - 4) {
-                    row.scrollTo({ left: 0, behavior: 'smooth' });
+                    row.scrollTo({ left: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
                 } else {
-                    row.scrollBy({ left: step, behavior: 'smooth' });
+                    row.scrollBy({ left: step, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
                 }
             }, config.interval || 3000);
         };
@@ -311,6 +359,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let statsAnimated = false;
 
     function animateStats() {
+        if (prefersReducedMotion) {
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                stat.textContent = Number.isNaN(target) ? '0' : String(target);
+            });
+            return;
+        }
+
         statNumbers.forEach(stat => {
             const target = parseInt(stat.getAttribute('data-target'));
             const duration = 2000;
@@ -354,7 +410,11 @@ document.addEventListener('DOMContentLoaded', () => {
         '.program-tag, .service-detail'
     );
 
-    revealElements.forEach(el => el.classList.add('reveal'));
+    if (prefersReducedMotion) {
+        revealElements.forEach(el => el.classList.add('visible'));
+    } else {
+        revealElements.forEach(el => el.classList.add('reveal'));
+    }
 
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
@@ -366,7 +426,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-    revealElements.forEach(el => revealObserver.observe(el));
+    if (!prefersReducedMotion) {
+        revealElements.forEach(el => revealObserver.observe(el));
+    }
 
 
     // =============================================
@@ -377,11 +439,19 @@ document.addEventListener('DOMContentLoaded', () => {
         '.media-heading, .cta-heading, .page-hero-heading, .form-title, ' +
         '.gallery-sub, .service-detail-title'
     );
-    headings.forEach(h => { h.classList.add('reveal'); revealObserver.observe(h); });
+    if (prefersReducedMotion) {
+        headings.forEach(h => h.classList.add('visible'));
+    } else {
+        headings.forEach(h => { h.classList.add('reveal'); revealObserver.observe(h); });
+    }
 
     document.querySelectorAll('.eyebrow').forEach(e => {
-        e.classList.add('reveal');
-        revealObserver.observe(e);
+        if (prefersReducedMotion) {
+            e.classList.add('visible');
+        } else {
+            e.classList.add('reveal');
+            revealObserver.observe(e);
+        }
     });
 
 
@@ -399,11 +469,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, { threshold: 0.2 });
-    logoCards.forEach(card => {
-        card.style.opacity = '0'; card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    });
-    if (logoCards.length > 0) logoObserver.observe(logoCards[0]);
+    if (prefersReducedMotion) {
+        logoCards.forEach(card => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        });
+    } else {
+        logoCards.forEach(card => {
+            card.style.opacity = '0'; card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        if (logoCards.length > 0) logoObserver.observe(logoCards[0]);
+    }
 
 
     // =============================================
@@ -420,11 +497,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, { threshold: 0.2 });
-    timelineSteps.forEach(step => {
-        step.style.opacity = '0'; step.style.transform = 'translateY(30px) scale(0.9)';
-        step.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-    if (timelineSteps.length > 0) tlObserver.observe(timelineSteps[0]);
+    if (prefersReducedMotion) {
+        timelineSteps.forEach(step => {
+            step.style.opacity = '1';
+            step.style.transform = 'translateY(0) scale(1)';
+        });
+    } else {
+        timelineSteps.forEach(step => {
+            step.style.opacity = '0'; step.style.transform = 'translateY(30px) scale(0.9)';
+            step.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        if (timelineSteps.length > 0) tlObserver.observe(timelineSteps[0]);
+    }
 
 
     // =============================================
@@ -441,11 +525,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, { threshold: 0.2 });
-    benefitItems.forEach(item => {
-        item.style.opacity = '0'; item.style.transform = 'translateX(-30px)';
-        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    });
-    if (benefitItems.length > 0) benefitObserver.observe(benefitItems[0]);
+    if (prefersReducedMotion) {
+        benefitItems.forEach(item => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateX(0)';
+        });
+    } else {
+        benefitItems.forEach(item => {
+            item.style.opacity = '0'; item.style.transform = 'translateX(-30px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        if (benefitItems.length > 0) benefitObserver.observe(benefitItems[0]);
+    }
 
 
     // =============================================
@@ -483,9 +574,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentLightboxIndex = 0;
     let visibleItems = [];
 
-    function openLightbox(index) {
-        visibleItems = Array.from(document.querySelectorAll('.gallery-item')).filter(item => item.style.display !== 'none');
-        currentLightboxIndex = index;
+    function getVisibleGalleryItems() {
+        return Array.from(galleryItems).filter(item => item.style.display !== 'none');
+    }
+
+    function openLightboxByItem(itemElement) {
+        visibleItems = getVisibleGalleryItems();
+        currentLightboxIndex = visibleItems.indexOf(itemElement);
+        if (currentLightboxIndex < 0) return;
         updateLightboxImage();
         if (lightbox) { lightbox.classList.add('active'); document.body.style.overflow = 'hidden'; }
     }
@@ -504,8 +600,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    galleryItems.forEach((item, index) => {
-        item.addEventListener('click', () => openLightbox(index));
+    galleryItems.forEach((item) => {
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('role', 'button');
+        item.addEventListener('click', () => openLightboxByItem(item));
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLightboxByItem(item);
+            }
+        });
     });
     if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
     if (lightbox) lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
@@ -569,7 +673,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             consultationForm.style.display = 'none';
             if (formSuccess) formSuccess.style.display = 'block';
-            formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            formSuccess.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'center' });
         });
     }
 
@@ -590,7 +694,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (targetSection) {
                     const offset = 120;
                     const top = targetSection.getBoundingClientRect().top + window.scrollY - offset;
-                    window.scrollTo({ top, behavior: 'smooth' });
+                    window.scrollTo({ top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
                 }
                 sidebarLinks.forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
@@ -619,7 +723,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (target) {
                     const offset = 120;
                     const top = target.getBoundingClientRect().top + window.scrollY - offset;
-                    window.scrollTo({ top, behavior: 'smooth' });
+                    window.scrollTo({ top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
                     sidebarLinks.forEach(l => {
                         l.classList.toggle('active', l.getAttribute('data-target') === hash);
                     });
@@ -643,11 +747,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, { threshold: 0.1 });
-    dietCards.forEach(card => {
-        card.style.opacity = '0'; card.style.transform = 'translateY(20px) scale(0.95)';
-        card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-    });
-    if (dietCards.length > 0) dietObserver.observe(dietCards[0]);
+    if (prefersReducedMotion) {
+        dietCards.forEach(card => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0) scale(1)';
+        });
+    } else {
+        dietCards.forEach(card => {
+            card.style.opacity = '0'; card.style.transform = 'translateY(20px) scale(0.95)';
+            card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        });
+        if (dietCards.length > 0) dietObserver.observe(dietCards[0]);
+    }
 
 
     // =============================================
@@ -655,6 +766,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // =============================================
     function setupStagger(selector) {
         const cards = document.querySelectorAll(selector);
+        if (prefersReducedMotion) {
+            cards.forEach(card => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            });
+            return;
+        }
+
         const obs = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
