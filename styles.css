@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600&family=DM+Sans:wght@400;500&display=swap');
+
 /* =============================================
    CSS RESET & BASE
    ============================================= */
@@ -2448,5 +2450,311 @@ p, li, .card-desc, .founder-para, .service-intro, .service-detail-body p, .page-
 
     .video-testimonials-wrap .video-thumbnail {
         height: 210px !important;
+    }
+}
+
+
+/* =============================================
+   RESKIN OVERRIDES — TROPICAL BOTANICAL PALETTE
+   CSS ONLY: NO STRUCTURE CHANGES
+   ============================================= */
+:root {
+    --color-bg-page: #F2DDD4;
+    --color-bg-surface: #FAF5F0;
+    --color-bg-section-alt: #EDD8CE;
+    --color-accent-rose: #C97B8A;
+    --color-accent-rose-dark: #8C4A5A;
+    --color-accent-olive: #5C6B4A;
+    --color-accent-leaf: #8FA06E;
+    --color-dark: #3A4530;
+    --color-text-body: #2C2416;
+    --color-text-muted: #7A6A60;
+
+    /* Legacy token aliases to keep existing selectors intact */
+    --sage: var(--color-accent-olive);
+    --sage-dark: var(--color-dark);
+    --sage-light: var(--color-accent-leaf);
+    --rose-accent: var(--color-accent-rose);
+    --rose-soft: var(--color-bg-page);
+    --sage-bg: var(--color-bg-surface);
+    --off-white: var(--color-bg-surface);
+    --warm-ivory: var(--color-bg-page);
+    --charcoal: var(--color-dark);
+    --dark-text: var(--color-text-body);
+    --body-text: var(--color-text-body);
+    --muted-text: var(--color-text-muted);
+    --light-text: var(--color-text-muted);
+    --border-color: rgba(143, 160, 110, 0.45);
+    --card-border: rgba(143, 160, 110, 0.55);
+    --serif: 'Cormorant Garamond', serif;
+    --sans: 'DM Sans', sans-serif;
+}
+
+body {
+    background-color: var(--color-bg-page);
+    color: var(--color-text-body);
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--color-dark);
+}
+
+body,
+p,
+li,
+label,
+input,
+button,
+textarea,
+select {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--color-text-body);
+}
+
+.main-navbar {
+    background: rgba(250, 245, 240, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(90, 70, 60, 0.12);
+}
+
+.main-navbar.scrolled {
+    box-shadow: 0 1px 0 rgba(90, 70, 60, 0.12);
+}
+
+.logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--color-dark);
+}
+
+.nav-link {
+    color: var(--color-text-body);
+}
+
+.nav-link:hover {
+    color: var(--color-accent-rose);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.nav-cta {
+    background: var(--color-accent-rose);
+    color: #fff !important;
+    border-radius: 100px;
+}
+
+.nav-cta:hover {
+    background: var(--color-accent-rose-dark);
+}
+
+body > section:nth-of-type(odd),
+main > section:nth-of-type(odd) {
+    background: var(--color-bg-page);
+}
+
+body > section:nth-of-type(even),
+main > section:nth-of-type(even) {
+    background: var(--color-bg-surface);
+}
+
+hr,
+.timeline-line {
+    border-color: var(--color-accent-leaf);
+    background-color: var(--color-accent-leaf);
+}
+
+.program-card,
+.diet-program-card,
+.review-card,
+.video-card,
+.qual-card,
+.offer-card,
+.service-detail,
+.map-card,
+.contact-card,
+.contact-form-card,
+.clinic-header-card,
+.contact-info-strip,
+.faq-item,
+.logo-card,
+.gallery-item {
+    background: var(--color-bg-surface);
+    border: 0.5px solid var(--color-accent-leaf);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.program-card:hover,
+.diet-program-card:hover,
+.review-card:hover,
+.video-card:hover,
+.qual-card:hover,
+.offer-card:hover,
+.service-detail:hover,
+.map-card:hover,
+.contact-card:hover,
+.faq-item:hover,
+.gallery-item:hover {
+    transform: translateY(-3px);
+}
+
+.hero-cta-btn,
+.btn-sage,
+.cta-btn,
+.form-submit,
+.contact-pill-call,
+.contact-pill-wa {
+    background: var(--color-accent-rose);
+    color: #fff !important;
+}
+
+.hero-cta-btn:hover,
+.btn-sage:hover,
+.cta-btn:hover,
+.form-submit:hover,
+.contact-pill-call:hover,
+.contact-pill-wa:hover {
+    background: var(--color-accent-rose-dark);
+}
+
+.btn-ghost,
+.btn-outline,
+.ghost-btn,
+.outline-btn,
+.card-cta {
+    border: 1.5px solid var(--color-accent-olive);
+    color: var(--color-accent-olive);
+}
+
+.btn-ghost:hover,
+.btn-outline:hover,
+.ghost-btn:hover,
+.outline-btn:hover,
+.card-cta:hover {
+    background: rgba(92, 107, 74, 0.08);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+input,
+select,
+textarea {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-accent-olive);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+input::placeholder,
+textarea::placeholder {
+    color: var(--color-text-muted);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--color-accent-rose);
+    outline-offset: 1px;
+    box-shadow: none;
+}
+
+.site-footer {
+    background: var(--color-dark);
+    color: #E8DDD8;
+    background-image: linear-gradient(rgba(58, 69, 48, 0.97), rgba(58, 69, 48, 0.97)), url('images/Tropinkana Vinyl Wallpaper.jpeg');
+    background-size: auto, 420px;
+    background-repeat: no-repeat, repeat;
+    background-position: center, center;
+}
+
+.site-footer,
+.site-footer p,
+.site-footer a,
+.footer-col-title,
+.footer-brand-desc,
+.footer-contact p,
+.footer-bottom-inner,
+.footer-links a {
+    color: #E8DDD8;
+}
+
+.site-footer a:hover,
+.footer-links a:hover,
+.footer-contact a:hover,
+.footer-bottom-inner a:hover {
+    color: var(--color-accent-rose);
+}
+
+.hero-section {
+    position: relative;
+    background: url('images/Tropinkana%20Vinyl%20Wallpaper.jpeg') center center / cover no-repeat fixed !important;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(242, 221, 212, 0.32) !important;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    pointer-events: none;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--color-dark);
+}
+
+.hero-heading-row {
+    background: rgba(250, 245, 240, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 18px 22px;
+}
+
+.filter-btn {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-accent-olive);
+    color: var(--color-accent-olive);
+    border-radius: 100px;
+}
+
+.filter-btn:hover {
+    background: rgba(92, 107, 74, 0.08);
+    border-color: var(--color-accent-olive);
+    color: var(--color-accent-olive);
+}
+
+.filter-btn.active {
+    background: var(--color-accent-rose);
+    border-color: var(--color-accent-rose);
+    color: #fff;
+}
+
+.service-badge,
+.gallery-tag {
+    background: rgba(143, 160, 110, 0.15);
+    color: var(--color-accent-olive);
+    border-radius: 100px;
+}
+
+@media (max-width: 1024px) {
+    .hero-section {
+        background-attachment: scroll;
     }
 }
