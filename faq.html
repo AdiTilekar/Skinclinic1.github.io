@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Contact - Inspirations by Dr. Prerna</title>
+    <title>FAQ - Inspirations by Dr. Prerna</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -59,8 +59,8 @@
           <a class="nav-link" href="services.html">Services</a>
           <a class="nav-link" href="programs.html">Programs</a>
           <a class="nav-link" href="how-it-works.html">How It Works</a>
-          <a class="nav-link" href="faq.html">FAQ</a>
-          <a class="nav-link is-active" href="contact.html">Contact</a>
+          <a class="nav-link is-active" href="faq.html">FAQ</a>
+          <a class="nav-link" href="contact.html">Contact</a>
           <a class="nav-link" href="privacy.html">Privacy</a>
         </div>
         <a class="button-primary" href="contact.html">Book on WhatsApp</a>
@@ -69,60 +69,71 @@
 
     <header class="section-pad">
       <div class="max-w-6xl mx-auto px-6">
-        <p class="text-sm uppercase tracking-[0.3em] text-charcoal/50 hero-animate">Contact</p>
-        <h1 class="text-4xl sm:text-5xl font-serif mt-3 hero-animate">Reach out and begin your journey.</h1>
+        <p class="text-sm uppercase tracking-[0.3em] text-charcoal/50 hero-animate">FAQ</p>
+        <h1 class="text-4xl sm:text-5xl font-serif mt-3 hero-animate">Clear answers, zero overwhelm.</h1>
         <p class="text-lg text-charcoal/70 mt-4 max-w-2xl hero-animate">
-          Consultation is gentle, personal, and handled with care.
+          Every question is welcomed. Here are the most common ones.
         </p>
       </div>
     </header>
 
     <section class="section-pad pt-0">
-      <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-[1.1fr_0.9fr] gap-10">
-        <div class="space-y-6" data-animate="fade-up">
-          <div class="callout p-6">
-            <p class="font-semibold">WhatsApp for quickest response</p>
-            <p class="text-charcoal/70 mt-2">+91 9XXXXXXXXX</p>
-          </div>
-          <div class="stat-card p-6">
-            <p class="text-sm uppercase tracking-[0.2em] text-charcoal/50">Locations</p>
-            <p class="font-semibold mt-2">Pimpri Chinchwad and nearby clinics</p>
-            <ul class="text-sm text-charcoal/70 mt-3 space-y-2">
-              <li>City Clinic 1 (morning)</li>
-              <li>City Clinic 2 (evening)</li>
-              <li>Online consults available</li>
-            </ul>
-          </div>
-          <div class="stat-card p-6">
-            <p class="text-sm uppercase tracking-[0.2em] text-charcoal/50">Payments</p>
-            <p class="font-semibold mt-2">UPI, bank transfer, cash</p>
-            <p class="text-sm text-charcoal/70 mt-2">Detailed fee structure shared on request.</p>
+      <div class="max-w-4xl mx-auto px-6 space-y-4">
+        <div class="accordion-item" data-animate="fade-up">
+          <button aria-expanded="false" aria-controls="faq-1">
+            <span>Will I gain weight after stopping the plan?</span>
+            <span>+</span>
+          </button>
+          <div class="answer" id="faq-1">
+            <p class="mt-3 text-sm text-charcoal/70">
+              The plan focuses on habits, not restrictions. Maintenance guidance prevents rebound weight.
+            </p>
           </div>
         </div>
-        <div class="space-y-6" data-animate="fade-up">
-          <div class="map-shell p-6">
-            <div class="h-64 rounded-2xl bg-gradient-to-br from-amber-100 via-rose-100 to-emerald-100 relative">
-              <div class="map-pin" style="top: 35%; left: 30%;"></div>
-              <div class="map-pin" style="top: 50%; left: 60%;"></div>
-              <div class="map-pin" style="top: 65%; left: 45%;"></div>
-            </div>
-            <p class="text-sm text-charcoal/70 mt-4">Custom illustrated map of Pimpri Chinchwad.</p>
+        <div class="accordion-item" data-animate="fade-up">
+          <button aria-expanded="false" aria-controls="faq-2">
+            <span>Do you give any medicines or powders?</span>
+            <span>+</span>
+          </button>
+          <div class="answer" id="faq-2">
+            <p class="mt-3 text-sm text-charcoal/70">
+              No powders, no medicines. Plans are 100% food-based.
+            </p>
+            <span class="badge bg-emerald-100 text-emerald-800 mt-3">100% natural</span>
           </div>
-          <form class="stat-card p-6 space-y-4">
-            <div>
-              <label class="text-sm text-charcoal/70">Full Name</label>
-              <input class="w-full mt-2 px-4 py-3 rounded-2xl border border-charcoal/10" placeholder="Your name" />
-            </div>
-            <div>
-              <label class="text-sm text-charcoal/70">Phone Number</label>
-              <input class="w-full mt-2 px-4 py-3 rounded-2xl border border-charcoal/10" placeholder="WhatsApp number" />
-            </div>
-            <div>
-              <label class="text-sm text-charcoal/70">Primary concern</label>
-              <input class="w-full mt-2 px-4 py-3 rounded-2xl border border-charcoal/10" placeholder="PCOD, thyroid, weight" />
-            </div>
-            <button class="button-primary w-full justify-center">Request Consultation</button>
-          </form>
+        </div>
+        <div class="accordion-item" data-animate="fade-up">
+          <button aria-expanded="false" aria-controls="faq-3">
+            <span>How much weight loss is expected?</span>
+            <span>+</span>
+          </button>
+          <div class="answer" id="faq-3">
+            <p class="mt-3 text-sm text-charcoal/70">
+              Healthy weight changes vary by body type, typically 2-4 kg per month.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item" data-animate="fade-up">
+          <button aria-expanded="false" aria-controls="faq-4">
+            <span>Is exercise mandatory?</span>
+            <span>+</span>
+          </button>
+          <div class="answer" id="faq-4">
+            <p class="mt-3 text-sm text-charcoal/70">
+              No. Movement is suggested, but it is always aligned with your comfort.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item" data-animate="fade-up">
+          <button aria-expanded="false" aria-controls="faq-5">
+            <span>Which payment modes are accepted?</span>
+            <span>+</span>
+          </button>
+          <div class="answer" id="faq-5">
+            <p class="mt-3 text-sm text-charcoal/70">
+              UPI, bank transfer, and cash payments are supported.
+            </p>
+          </div>
         </div>
       </div>
     </section>
